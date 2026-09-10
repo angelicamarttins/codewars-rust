@@ -3,7 +3,25 @@
 fn main() {
   let consecutive  = [1,2,3];
 
-  if consecutive.len() < 2 {
+  let result = bla(&consecutive);
+  println!("{}", result.unwrap());
+} 
+
+fn bla(consecutive: &[i32]) -> Option<i32> {
+    if consecutive.len() < 2 {
     panic!("Consecutive array must have, at least, two elements")
   }
-} 
+
+  let mut count = 0;
+
+  for element in consecutive {
+      let next_element = count + 1;
+      count += 1;
+
+      if count <= consecutive.len() && *element == consecutive[next_element] {
+        return Some(*element);
+      }
+  }
+
+  return None;
+}
